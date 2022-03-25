@@ -1,4 +1,4 @@
-%Hongyi Su, Taufiqman, Alice
+%Hongyi Su
 
 %pwd:  '/Users/hongyisu/Desktop/Hiwi'
 clc;
