@@ -7,7 +7,7 @@
 %Input: f.ex. obs_sta = 'wads', f.ex. syn_sta = 'receiver-00005', channel = {'EW', 'NS', 'Vertical'}
 %Output: data_obs, data_syn, fs_obs, fs_syn, max_syn_t, max_obs_t;
 
-function [data_obs data_syn obs_t syn_t fs_obs fs_syn max_syn_t max_obs_t] = fetch_data(obs_sta,syn_sta, channel)
+function [data_obs data_syn obs_t syn_t fs_obs fs_syn max_syn_t max_obs_t] = fetch_data(obs_sta,syn_sta, channel, syn)
 
     %import observational data
     obs = importdata([pwd '/data/obs/datanew/' obs_sta]);
@@ -23,9 +23,9 @@ function [data_obs data_syn obs_t syn_t fs_obs fs_syn max_syn_t max_obs_t] = fet
    
     %import synthetic data (SeisSol FORMAT)
     % VARIABLES = "Time","xx","yy","zz","xy","yz","xz","u","v","w"
-    fid  = fopen(['data/syn/datanew/' syn_sta]);
-    %output_elastic_easi_1D_rock/
-    %output_elastic_easi_1D_soil/
+    fid  = fopen(['data/' syn '/datanew/' syn_sta]);
+    %syn_1D_rock
+    %syn_1D_soil
     data = textscan(fid,'%f%f%f%f%f%f%f%f%f%f','Delimiter','\t','HeaderLines',5);
     fid = fclose(fid);
     syn_t=cell2mat(data(1,1)); 

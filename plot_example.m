@@ -29,8 +29,9 @@ end
 list_5 = [69, 42, 85, 119, 77]; %select stations here, refer to doc/report_2.0.txt, f.ex. scse = 1
 %obre = 69, seal = 119, sndb = 85, vasq = 42, anav = 77;
 channel_3 = ["NS", "EW", "Vertical"];
-%loop over the five seleted stations and plot them
+syn = 'syn_3D'; % {other possible input: syn_1D_rock, syn_1D_soil}
 
+%loop over the five seleted stations and plot them
 for(j=1:length(list_5))
     for(k=1:length(channel_3))
         
@@ -38,7 +39,7 @@ for(j=1:length(list_5))
      channel = channel_3(k);
      station = obs_list{i};
         
-     [data_obs data_syn obs_t syn_t fs_obs fs_syn max_syn_t max_obs_t] = fetch_data(obs_list{i},syn_list{i}, channel);
+     [data_obs data_syn obs_t syn_t fs_obs fs_syn max_syn_t max_obs_t] = fetch_data(obs_list{i},syn_list{i}, channel, syn);
      data_obs = data_obs/100; % in this specific study, unit conversion from cm>m
      %detrending
      data_obs_d = detrend(data_obs);
@@ -96,13 +97,14 @@ end
 
 list_5 = [69, 42, 85, 119, 77];
 channel_3 = ["NS", "EW", "Vertical"];
+syn = 'syn_3D';
 for(j=1:length(list_5))
     for(k=1:length(channel_3))
         
      i =list_5(j);
      channel = channel_3(k);
      station = obs_list{i}; % for title of the figure  
-     [data_obs data_syn obs_t syn_t fs_obs fs_syn max_syn_t max_obs_t] = fetch_data(obs_list{i},syn_list{i}, channel);
+     [data_obs data_syn obs_t syn_t fs_obs fs_syn max_syn_t max_obs_t] = fetch_data(obs_list{i},syn_list{i}, channel, syn);
      %detrend
      data_obs_d = detrend(data_obs);
      data_syn_d = detrend(data_syn);
@@ -130,7 +132,7 @@ for(j=1:length(list_5))
     hold on
     loglog(f_syn,A_syn, 'k');
     grid on
-    legend('observed','simulated');
+    legend('observed','synthetic');
     xlabel('Frequency[Hz]');
     hAxis = axes('visible','off');
     h = text(-0.1,0.5,[station ' ' channel]);
