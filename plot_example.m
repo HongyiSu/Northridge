@@ -1,5 +1,5 @@
-%Hongyi Su, B.Eng. B.Sc.
-%hsu@geophysik.uni-muenchen.de
+%Hongyi Su, M.Sc. candidate at LMU @ TUM 
+%Supervisors: Mr. Taufiqurrahman taufiqurrahman, Prof. Dr. Alice-Agnes Gabriel
 
 %pwd:  '/Users/hongyisu/Desktop/Hiwi'
 clc;
