@@ -1,4 +1,5 @@
-%Hongyi Su
+%Hongyi Su, B.Eng. B.Sc.
+%hsu@geophysik.uni-muenchen.de
 
 %pwd:  '/Users/hongyisu/Desktop/Hiwi'
 clc;
