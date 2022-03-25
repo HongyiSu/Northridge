@@ -1,7 +1,6 @@
 %Hongyi Su, M.Sc. candidate at LMU @ TUM 
 %Supervisors: Mr. Taufiqurrahman taufiqurrahman, Prof. Dr. Alice-Agnes Gabriel
 
-%pwd:  '/Users/hongyisu/Desktop/Hiwi'
 clc;
 close all;
 clear all;
