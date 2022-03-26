@@ -11,8 +11,6 @@ function [data_obs data_syn obs_t syn_t fs_obs fs_syn max_syn_t max_obs_t] = fet
 
     %import observational data
     obs = importdata([pwd '/data/obs/datanew/' obs_sta]);
-    %output_elastic_easi_1D_rock/
-    %output_elastic_easi_1D_soil/
     obs_t = obs.data(:,1); 
     obs_t = obs_t-obs_t(1);%make sure it starts from 0, for some stations, start time is not 0 second
     fs_obs = 1/(obs_t(2)-obs_t(1)); %return sampling frequency of observational waveform
