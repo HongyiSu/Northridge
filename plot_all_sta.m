@@ -1,5 +1,5 @@
 %Hongyi Su, M.Sc. candidate at LMU @ TUM 
-%Supervisors: Mr. Taufiqurrahman taufiqurrahman, Prof. Dr. Alice-Agnes Gabriel
+%Supervisors: Taufiqurrahman taufiqurrahman, Alice-Agnes Gabriel
 
 clc;
 close all;
@@ -19,15 +19,17 @@ obs_list = TT.textdata(:,2); % extract synetic name list
 obs_list = obs_list(3:end); % skip headline
 %%
 %plot all obs/syn waveform 
-if(isdir([pwd '/all_plots/3D/waveform' ]))
+channel_3 = ["NS", "EW", "Vertical"];
+syn = 'syn_1D_soil'; % {other possible input: syn_1D_rock, syn_1D_soil}
+path_name = syn(5:end);
+
+if(isdir([pwd '/all_plots/' path_name '/waveform' ]))
     disp(['directory exists!'])
 else
-    mkdir([pwd '/all_plots/3D/waveform' ])
-    disp(['create a new directory: ' pwd '/all_plots/3D/waveform'])
+    mkdir([pwd '/all_plots/' path_name '/waveform' ])
+    disp(['create a new directory: ' pwd '/all_plots/' path_name '/waveform'])
 end
 
-channel_3 = ["NS", "EW", "Vertical"];
-syn = 'syn_3D'; % {other possible input: syn_1D_rock, syn_1D_soil}
 
 %loop over the five seleted stations and plot them
 
@@ -69,6 +71,9 @@ for(i=1:length(obs_list))
     
      %now plot synthetic data
      h2 = subplot(212);
+     
+    
+         
      plot(syn_t-3.885,data_syn_d_f,'r','LineWidth', 1.2); %shifted 3.885 second based on obre EW
      xlim([0,60])
      h2_pos=get(h2,'Position'); 
@@ -78,28 +83,29 @@ for(i=1:length(obs_list))
      set(h2,'Position',[h1_pos(1) h1_pos(2)+h1_pos(4)-0.65 h2_pos(3:end)]);
 
      
-     saveas(fig,[pwd '/all_plots/3D/waveform' '/' station '_' char(channel) '_3D'],'jpg');
+     saveas(fig,[pwd '/all_plots/' path_name '/waveform' '/' station '_' char(channel) '_' path_name],'jpg');
      close(fig);
     end
 end
 %%
 %plot all obs/syn spectrum
-if(isdir([pwd '/all_plots/3D/spectrum' ]))
+channel_3 = ["NS", "EW", "Vertical"];
+syn = 'syn_1D_soil'; % {other possible input: syn_1D_rock, syn_1D_soil}
+path_name = syn(5:end);
+
+if(isdir([pwd '/all_plots/' path_name '/spectrum' ]))
     disp(['directory exists!'])
 else
-    mkdir([pwd '/all_plots/3D/spectrum' ])
-    disp(['create a new directory: ' pwd '/all_plots/3D/spectrum'])
+    mkdir([pwd '/all_plots/' path_name '/spectrum' ])
+    disp(['create a new directory: ' pwd '/all_plots/' path_name '/spectrum'])
 end
 
 
 
-channel_3 = ["NS", "EW", "Vertical"];
-syn = 'syn_3D'; % {other possible input: syn_1D_rock, syn_1D_soil}
-
 for(i=1:length(obs_list))
     for(k=1:length(channel_3))
         
-     channel = chchannel_3(k);
+     channel = char(channel_3(k));
      station = obs_list{i}; % for title of the figure  
      [data_obs data_syn obs_t syn_t fs_obs fs_syn max_syn_t max_obs_t] = fetch_data(obs_list{i},syn_list{i}, channel, syn);
      %detrend
@@ -135,7 +141,7 @@ for(i=1:length(obs_list))
     h = text(-0.1,0.5,[station ' ' channel]);
     set(h,'fontsize',18,'rotation',90,'HorizontalAlignment','center');
 
-    saveas(fig1,[pwd '/all_plots/3D/spectrum' '/' station '_' char(channel) '_spectrum_3D'],'jpg')
+    saveas(fig1,[pwd '/all_plots/' path_name '/spectrum' '/' station '_' char(channel) '_spectrum_' path_name],'jpg');
     close(fig1);
     end
 end

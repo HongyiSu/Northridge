@@ -1,5 +1,5 @@
 %Hongyi Su, M.Sc. candidate at LMU @ TUM 
-%Supervisors: Mr. Taufiqurrahman taufiqurrahman, Prof. Dr. Alice-Agnes Gabriel
+%Supervisors: Taufiqurrahman taufiqurrahman, Alice-Agnes Gabriel
 %
 %This function is used for return the desired observational & syntheic data,
 %as well as their smapling frequency [Hz] and duration [seconds]
