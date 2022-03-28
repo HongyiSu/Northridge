@@ -1,4 +1,4 @@
-This work is funded by the TEAR project;
+This work is funded by the TEAR project, thanks to Alice;
 
 Observational waveform data were downloaded from peer.berkeley.edu/nga;
 
