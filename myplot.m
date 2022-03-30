@@ -1,33 +1,40 @@
-function myplot(obs_t, data_obs_d_f, syn_t, data_syn_d_f,max_obs_t,max_syn_t, station, channel)
+function myplot(obs_t, data_obs_d_f, syn_t, data_syn_d_f,max_obs_t,max_syn_t, station, channel, shift,j,k )
        
-     %plotting
-     %fig = figure;
-     % fig.Units = 'centimeters';
-      %fig.Position = [0 0 30 30/1.4];%define size of the figure
-     %plot observational data
-     h1 = subplot(211);
-     plot(obs_t,data_obs_d_f,'k','LineWidth', 1.2);
-     h1_pos=get(h1,'Position'); 
+     
+     plot(obs_t,data_obs_d_f/max(abs(data_obs_d_f)),'r','LineWidth', 1.2);
+     if(j==1)
+        th = title([char(channel)],'FontSize', 20,'fontweight','bold');
+        titlePos = get(th ,'position');
+        titlePos(2) = 1.5;
+        set(th , 'position' , titlePos);
+     end
+     if(k==1)
+        text(-20,-1,['\bf' '\it' station],'FontSize', 18);
+    end
+
      box off;
      axis off ;
      xlim([0,60]);
-     %title([station ' & ' syn_list{i} ' ' char(channel) ' with butter [' num2str(m)... 
-     %',' num2str(n) '] Hz, shift 3.885 s' ],'Interpreter','none');
-     text(-4,min(data_obs_d_f),['\bf' '\it' station '(' char(channel) ')'],'FontSize', 10);
+
+     %text(-6,-1,['\bf' '\it' station '(' char(channel) ')'],'FontSize', 18);
+     
      %scale filtered observational data this factor written on the plot to get filtered synthetic data
      po1 = max(max_obs_t,max_syn_t); %for place the text
-     text(po1,max(data_obs_d_f)*0.95,num2str((max(data_syn_d_f)/max(data_obs_d_f))), 'FontSize', 16);
+     text(po1,1,num2str((max(abs(data_syn_d_f))/max(abs(data_obs_d_f)))), 'FontSize', 16);
     
-
+hold on
 
      %now plot synthetic data
-     h2 = subplot(212);
-     plot(syn_t-3.885,data_syn_d_f,'r','LineWidth', 1.2); %shifted 3.885 second based on obre EW
-     xlim([0,60])
-     h2_pos=get(h2,'Position'); 
+    
+     plot(syn_t-shift,data_syn_d_f/max(abs(data_syn_d_f))-2,'k','LineWidth', 1.2); 
+    % if(j==1)
+    %    title([char(channel)],'FontSize', 20,'fontweight','bold');
+    % end
+     xlim([0,60]);
      box off
      axis off ;
      set(gcf,'color','w');
-     set(h2,'Position',[h1_pos(1) h1_pos(2)+h1_pos(4)-0.65 h2_pos(3:end)]);
+     
+     hold off
 end
    

@@ -81,6 +81,7 @@ for(j=1:length(list_5))
      set(h2,'Position',[h1_pos(1) h1_pos(2)+h1_pos(4)-0.65 h2_pos(3:end)]);
 
      
+     
      saveas(fig,[pwd '/example/waveform' '/' station '_' char(channel) '_3D'],'jpg');
      close(fig);
     end
