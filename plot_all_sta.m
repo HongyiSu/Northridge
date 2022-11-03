@@ -1,4 +1,5 @@
 %Hongyi Su, M.Sc. candidate at LMU @ TUM 
+%Supervisors: Taufiqurrahman taufiqurrahman, Alice-Agnes Gabriel
 
 clc;
 close all;
